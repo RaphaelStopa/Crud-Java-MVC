@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<title>Tarefas</title>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+      <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <link rel="stylesheet" href="style/styleCss.css"/>
+</head>
+<body class="grey lighten-5">
+	<header>
+		<nav class="menu grey darken-3" style="margin-bottom: 20px">
+		    <div class="nav-wrapper">
+		      <a href="#" class="brand-logo center">Cadastro de Tarefas:</a>
+		      <ul id="nav-mobile" class="right hide-on-med-and-down">
+		        <li><a href="/assignments" class="grey darken-2 btn"><i class="material-icons left">format_list_bulleted</i>Lista de Tarefas</a></li>
+		      </ul>
+		    </div>
+		</nav>
+	</header>
+	<div class="container form">
+	<form class="container" method="post">
+		Tarefa: <input type="text" value="" name="what"/>
+		Onde: <input type="text" value="" name="where"/>
+		Quando: <input type="text" value="" name="when"/>
+		<div class="input-field col s12">
+			<select name="status">
+				<option  value="NOT_STARTED" disabled selected>Escolha o status</option>
+				<option value="NOT_STARTED">Não iniciado</option>
+				<option value="IN_PROCESS">Iniciado</option>
+				<option value="PAUSED">Pausado</option>
+				<option value="FINISHED">Terminado</option>
+			</select>
+			<label>Materialize Select</label>
+		</div>
+		<div class="row">
+			<div class="input-field col s6">
+				Data: <input type="date" value="" name="date"/>
+			</div>
+			<div class="input-field col s6">
+				Horario: <input type="time" value="" name="schedule"/>
+			</div>
+		</div>
+		<button class="grey darken-2 btn" style="margin-bottom: 20px" type="submit">Salvar</button>
+
+	</form>
+		<th:block th:include="validationMessage"></th:block>
+	</div>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+	<script>  document.addEventListener('DOMContentLoaded', function() {
+		var elems = document.querySelectorAll('select');
+		var instances = M.FormSelect.init(elems, options);
+	});
+
+	$(document).ready(function(){
+		$('select').formSelect();
+	});
+	</script>
+</body>
+</html>

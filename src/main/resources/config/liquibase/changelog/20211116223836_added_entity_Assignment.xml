@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    <changeSet id="20211116223836-1" author="stopa">
+        <createTable tableName="assignment">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="what" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="asgmt_where" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="asgmt_when" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="date" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="schedule" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="status" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="user_id" type="bigint" >
+                <constraints nullable="true" />
+            </column>
+        </createTable>
+    </changeSet>
+
+
+    <changeSet author="stopa" id="1628601519081-24">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="assignment" constraintName="FK5hsqdfkrbn9f4976d0tgg8h0p" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="user"/>
+    </changeSet>
+
+    <changeSet id="20211116223836-1-data" author="stopa">
+        <loadData
+                  file="config/liquibase/data/assignment.csv"
+                  separator=";"
+                  tableName="assignment"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="what" type="string"/>
+            <column name="asgmt_where" type="string"/>
+            <column name="asgmt_when" type="string"/>
+            <column name="date" type="string"/>
+            <column name="schedule" type="string"/>
+            <column name="status" type="string"/>
+            <column name="user_id" type="numeric"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>
